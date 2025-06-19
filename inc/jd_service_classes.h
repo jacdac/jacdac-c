@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation.
+// Copyright (c) Jacdac Organization.
 // Licensed under the MIT license.
 
 #ifndef JD_SERVICE_CLASSES_H

@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation.
+// Copyright (c) Jacdac Organization.
 // Licensed under the MIT license.
 
 #include "services/jd_services.h"
