@@ -26,7 +26,7 @@ static uint32_t get_status_code(srv_t *state) {
 
 void sensor_send_status(srv_t *state) {
     uint32_t payload = get_status_code(state);
-    // DMESG("status: s=%d st=%d", state->service_index, payload);
+    // JD_DMESG("status: s=%d st=%d", state->service_index, payload);
     jd_send_event_ext(state, JD_EV_STATUS_CODE_CHANGED, &payload, sizeof(payload));
 }
 

@@ -444,7 +444,7 @@ void jd_rgb_init(void) {
 
     int led_type = dcfg_get_i32("led.type", 0);
 
-    DMESG("LED setup: pin=%d mono=%d type=%d", (int)pin, (int)is_mono, led_type);
+    JD_DMESG("LED setup: pin=%d mono=%d type=%d", (int)pin, (int)is_mono, led_type);
 
     if (led_type) {
         for (int i = 0; i < 3; ++i) {
@@ -456,7 +456,7 @@ void jd_rgb_init(void) {
             apa_type = led_type;
             pin_apa_data = pin;
             pin_apa_clk = dcfg_get_pin("led.pinCLK");
-            DMESG("APA/SK on D=%d CK=%d", pin_apa_data, pin_apa_clk);
+            JD_DMESG("APA/SK on D=%d CK=%d", pin_apa_data, pin_apa_clk);
             pin_set(pin_apa_data, 0);
             pin_set(pin_apa_clk, 0);
             pin_setup_output(pin_apa_data);

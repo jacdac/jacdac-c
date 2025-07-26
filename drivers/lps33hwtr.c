@@ -130,7 +130,7 @@ static void lps33hwtr_init(void) {
 
     int v = readReg(LPS33HW_WHO_AM_I);
 
-    DMESG("LPS33HW id: %x", v);
+    JD_DMESG("LPS33HW id: %x", v);
 
     if (v == LPS33HW_ID) {
         // OK
@@ -143,7 +143,7 @@ static void lps33hwtr_init(void) {
 
         // writeReg(LPS33HW_CTRL_REG1, ctx->ctrl1);
     } else {
-        DMESG("invalid chip");
+        JD_DMESG("invalid chip");
         JD_PANIC();
     }
     lps33hwtr_set_rate(RATE_10_HZ);

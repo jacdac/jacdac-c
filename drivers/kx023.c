@@ -117,12 +117,12 @@ static void kx023_init(void) {
 #endif
 
     int v = readReg(WHO_AM_I);
-    DMESG("KX023 acc id: %x", v);
+    JD_DMESG("KX023 acc id: %x", v);
 
     if (v == 0x15) {
         // OK
     } else {
-        DMESG("invalid chip");
+        JD_DMESG("invalid chip");
         JD_PANIC();
     }
 

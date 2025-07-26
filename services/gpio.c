@@ -176,7 +176,7 @@ void gpiosrv_config(void) {
             state->num_pins++;
     }
 
-    DMESG("GPIO init: %d pins", state->num_pins);
+    JD_DMESG("GPIO init: %d pins", state->num_pins);
 
     state->pins = jd_alloc(sizeof(pin_desc_t) * state->num_pins);
     state->num_values = (state->num_pins / 8) + 1;
@@ -198,7 +198,7 @@ void gpiosrv_config(void) {
         p->info.pin = idx;
         int gpio = dcfg_get_pin(info->key);
 
-        DMESG("GPIO init[%u] %s -> %d", idx, p->label, gpio);
+        JD_DMESG("GPIO init[%u] %s -> %d", idx, p->label, gpio);
 
         p->info.hw_pin = gpio;
         p->info.capabilities = JD_GPIO_CAPABILITIES_PULL_UP | JD_GPIO_CAPABILITIES_PULL_DOWN |
@@ -223,7 +223,7 @@ void gpiosrv_config(void) {
             memcpy(keybuf, "pins", 4);
             uint8_t gpio = dcfg_get_pin(keybuf);
             if (gpio != NO_PIN) {
-                DMESG("sPin: %s(%d) set to %d", keybuf, gpio, (int)info->value);
+                JD_DMESG("sPin: %s(%d) set to %d", keybuf, gpio, (int)info->value);
                 pin_set(gpio, info->value);
                 pin_setup_output(gpio);
 

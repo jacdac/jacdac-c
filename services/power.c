@@ -6,7 +6,7 @@
 #include "interfaces/jd_adc.h"
 #include "jacdac/dist/c/power.h"
 
-#define LOG(msg, ...) DMESG("PWR: " msg, ##__VA_ARGS__)
+#define LOG(msg, ...) JD_DMESG("PWR: " msg, ##__VA_ARGS__)
 // #define LOG JD_NOLOG
 
 #define OVERLOAD_MS 2000 // how long to shut down the power for after overload, in ms

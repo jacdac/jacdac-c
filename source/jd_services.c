@@ -405,9 +405,9 @@ static void jd_process_everything_core(void) {
     for (;;) {
         jd_frame_t *fr = jd_rx_get_frame();
         if (fr) {
-            // DMESG("FR { %x", fr->crc);
+            // JD_DMESG("FR { %x", fr->crc);
             jd_services_process_frame(fr);
-            // DMESG("FR } %x", fr->crc);
+            // JD_DMESG("FR } %x", fr->crc);
             jd_rx_release_frame(fr);
         }
 
@@ -466,7 +466,7 @@ void jd_services_sleep_us(uint32_t delta) {
 
     if (!curr_serv || curr_serv == IN_SERV_SLEEP) {
         // not allowed outside of regular (non-ctrl) service process() callback
-        DMESG("sleep outside of process()");
+        JD_DMESG("sleep outside of process()");
         JD_PANIC();
     }
     curr_service_process = IN_SERV_SLEEP;

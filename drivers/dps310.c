@@ -149,7 +149,7 @@ static void dps310_init(void) {
     // enable bg measure
     write_reg(DPS310_MEAS_CFG, 0b111);
 
-    DMESG("DPS310 init complete");
+    JD_DMESG("DPS310 init complete");
 }
 
 static void dps310_sleep(void) {

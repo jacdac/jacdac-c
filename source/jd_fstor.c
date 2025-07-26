@@ -6,7 +6,7 @@
 
 #ifdef JD_FSTOR_BASE_ADDR
 
-#define LOG(fmt, ...) DMESG("fstor: " fmt, ##__VA_ARGS__)
+#define LOG(fmt, ...) JD_DMESG("fstor: " fmt, ##__VA_ARGS__)
 #define VLOG JD_NOLOG
 
 #define FSTOR_PAGES (JD_FSTOR_TOTAL_SIZE / JD_FLASH_PAGE_SIZE)

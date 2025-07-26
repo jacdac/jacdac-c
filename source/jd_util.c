@@ -224,11 +224,11 @@ void *jd_from_hex_a(const char *src, unsigned *size) {
 
 #if JD_VERBOSE_ASSERT
 void jd_assert_fail(const char *expr, const char *file, unsigned line, const char *funname) {
-    DMESG("assertion '%s' failed at %s:%d in %s", expr, file, line, funname);
+    JD_DMESG("assertion '%s' failed at %s:%d in %s", expr, file, line, funname);
     hw_panic();
 }
 void jd_panic_core(const char *file, unsigned line, const char *funname) {
-    DMESG("JD_PANIC() at %s:%d in %s", file, line, funname);
+    JD_DMESG("JD_PANIC() at %s:%d in %s", file, line, funname);
     hw_panic();
 }
 #endif
@@ -576,7 +576,7 @@ void jd_log_packet(jd_packet_t *pkt) {
         sz = (sizeof(tmpbuf) >> 1);
     jd_to_hex(tmpbuf, pkt->data, sz);
     jd_device_short_id(shortid, pkt->device_identifier);
-    DMESG("PKT %s %s/%d cmd=%x sz=%d %s%s", pkt->flags & JD_FRAME_FLAG_COMMAND ? "TO" : "FROM",
+    JD_DMESG("PKT %s %s/%d cmd=%x sz=%d %s%s", pkt->flags & JD_FRAME_FLAG_COMMAND ? "TO" : "FROM",
           shortid, pkt->service_index, pkt->service_command, pkt->service_size, tmpbuf,
           sz == pkt->service_size ? "" : "...");
 }

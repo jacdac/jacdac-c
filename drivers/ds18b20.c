@@ -50,7 +50,7 @@ static void ds18b20_init(void) {
 
     ds18b20_cmd(DS18B20_READ_ROM);
     for (int i = 0; i < 8; ++i)
-        DMESG("r[%d] = %x", i, one_read());
+        JD_DMESG("r[%d] = %x", i, one_read());
 
     ds18b20_cmd(DS18B20_WRITE_SCRATCHPAD);
     one_write(0x00);                           // TH
@@ -67,12 +67,12 @@ static void ds18b20_process(void) {
             ctx->in_temp = 0;
             env_set_value(&ctx->temperature, v << (PRECISION - 4), temperature_error);
             ctx->nextsample = now + SAMPLING_MS * 1000;
-            // DMESG("t=%dC", ctx->temperature.value >> PRECISION);
+            // JD_DMESG("t=%dC", ctx->temperature.value >> PRECISION);
             ctx->inited = 2;
         } else {
             ctx->in_temp = 1;
             ds18b20_cmd(DS18B20_CONVERT_T);
-            // DMESG("conv");
+            // JD_DMESG("conv");
         }
     }
 }

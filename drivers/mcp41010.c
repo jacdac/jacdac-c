@@ -19,7 +19,7 @@ static void mcp41010_set_wiper(uint8_t channel, uint32_t wiper_value) {
     JD_ASSERT(channel < 2);
 
     uint8_t data[] = {0, 0};
-    // DMESG("SET WIPER[%d]: %d", channel, wiper_value);
+    // JD_DMESG("SET WIPER[%d]: %d", channel, wiper_value);
 
     data[0] = MCP_41010_WRITE_DATA | (1 << channel);
     data[1] = wiper_value;

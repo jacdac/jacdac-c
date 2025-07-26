@@ -73,7 +73,7 @@ static int scd_read_serial(void) {
         jd_services_sleep_us(500 * 1000);
 
     if (i2c_write_reg16_buf(SCD40_ADDR, SCD40_SERIAL_NUMBER, NULL, 0)) {
-        // DMESG("SCD40 not present");
+        // JD_DMESG("SCD40 not present");
         return -1;
     }
     jd_services_sleep_us(1000);
@@ -89,7 +89,7 @@ static int scd_read_serial(void) {
     if (jd_sgp_crc8(&data[6], 2) != data[8])
         return -1;
 
-    DMESG("SCD40 serial: %x:%x:%x", WORD(0), WORD(3), WORD(6));
+    JD_DMESG("SCD40 serial: %x:%x:%x", WORD(0), WORD(3), WORD(6));
 
     return 0;
 }
@@ -115,12 +115,12 @@ static void scd40_init(void) {
     i2c_init();
 
     if (read_data_ready() < 0) {
-        DMESG("SCD40 missing");
+        JD_DMESG("SCD40 missing");
         JD_PANIC();
     }
 
     if (scd_read_serial() != 0) {
-        DMESG("SCD40: already measuring; stopping");
+        JD_DMESG("SCD40: already measuring; stopping");
         send_cmd(SCD40_STOP_PERIODIC_MEASUREMENT);
         // wait before starting again
         ctx->nextsample = now + (600 << 10);

@@ -7,7 +7,7 @@
 
 #define check JD_ASSERT
 
-// #define DBG DMESG
+// #define DBG JD_DMESG
 #define DBG(...) ((void)0)
 
 static uint32_t _spiflash_num_bytes;
@@ -91,7 +91,7 @@ static uint32_t get_num_bytes(void) {
     sfdp_header0_t hd0;
     spiflash_read_sfdp(0, &hd0, sizeof(hd0));
     if (memcmp(hd0.magic, "SFDP", 4) != 0) {
-        DMESG("SFDP: wrong magic");
+        JD_DMESG("SFDP: wrong magic");
         JD_PANIC();
     }
     sfdp_header_t hd;
@@ -105,12 +105,12 @@ static uint32_t get_num_bytes(void) {
 
 void spiflash_dump_sfdp(void) {
     uint64_t id = spiflash_unique_id();
-    DMESG("flash ID %x %x", (unsigned)(id), (unsigned)(id >> 32));
+    JD_DMESG("flash ID %x %x", (unsigned)(id), (unsigned)(id >> 32));
 
     sfdp_header0_t hd0;
     spiflash_read_sfdp(0, &hd0, sizeof(hd0));
     if (memcmp(hd0.magic, "SFDP", 4) != 0) {
-        DMESG("SFDP: wrong magic");
+        JD_DMESG("SFDP: wrong magic");
         return;
     }
 
@@ -118,11 +118,11 @@ void spiflash_dump_sfdp(void) {
         sfdp_header_t hd;
         spiflash_read_sfdp(sizeof(hd0) + sizeof(hd) * i, &hd, sizeof(hd));
         uint32_t addr = (hd.pointer[2] << 16) | (hd.pointer[1] << 8) | hd.pointer[0];
-        DMESG("SFDP: header %d id=%d ptr=%d len=%d", i, hd.param_id, (int)addr, hd.length);
+        JD_DMESG("SFDP: header %d id=%d ptr=%d len=%d", i, hd.param_id, (int)addr, hd.length);
         for (int j = 0; j < hd.length; ++j) {
             uint32_t v;
             spiflash_read_sfdp(addr + j * 4, &v, sizeof(v));
-            DMESG("  %x", (unsigned)v);
+            JD_DMESG("  %x", (unsigned)v);
         }
     }
 }
@@ -196,7 +196,7 @@ void spiflash_init(void) {
 
     _spiflash_num_bytes = get_num_bytes();
 
-    DMESG("SPI flash %d Mbytes", (int)((_spiflash_num_bytes + 511 * 1024) >> 20));
+    JD_DMESG("SPI flash %d Mbytes", (int)((_spiflash_num_bytes + 511 * 1024) >> 20));
 }
 
 #endif

@@ -116,12 +116,12 @@ void jd_queue_test(void) {
             if (sz > 240)
                 sz = 12;
             frm.size = sz;
-            DMESG("push %d %d", push, frm.size);
+            JD_DMESG("push %d %d", push, frm.size);
             if (jd_queue_push(q, &frm) == 0) {
                 push++;
                 len += FRM_SIZE(&frm);
             } else {
-                DMESG("full");
+                JD_DMESG("full");
                 ASSERT(len + JD_FRAME_SIZE(&frm) > TEST_SIZE - 255);
             }
         } else {
@@ -130,7 +130,7 @@ void jd_queue_test(void) {
                 ASSERT(f == NULL);
             } else {
                 ASSERT(f != NULL);
-                DMESG("pop %d", f->crc);
+                JD_DMESG("pop %d", f->crc);
                 ASSERT(f->crc == shift);
                 shift++;
                 for (int j = 0; j < f->size; ++j)
@@ -140,6 +140,6 @@ void jd_queue_test(void) {
         }
     }
 
-    DMESG("q-test OK");
+    JD_DMESG("q-test OK");
 }
 #endif

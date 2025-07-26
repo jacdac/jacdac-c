@@ -182,7 +182,7 @@ void jd_bqueue_test(void) {
             if (sz + len < TEST_SIZE) {
                 for (int j = 0; j < sz; ++j)
                     buf[j] = push_data++;
-                // DMESG("push %d", sz);
+                // JD_DMESG("push %d", sz);
                 int r = jd_bqueue_push(q, buf, sz);
                 JD_ASSERT(r == 0);
                 len += sz;
@@ -202,7 +202,7 @@ void jd_bqueue_test(void) {
                 }
             }
             len -= sz;
-            // DMESG("pop %d", sz);
+            // JD_DMESG("pop %d", sz);
 
             for (int j = 0; j < sz; ++j)
                 JD_ASSERT(buf[j] == pop_data++);
@@ -211,6 +211,6 @@ void jd_bqueue_test(void) {
         JD_ASSERT(len == (int)jd_bqueue_occupied_bytes(q));
     }
 
-    DMESG("q-test OK %d full", numfull);
+    JD_DMESG("q-test OK %d full", numfull);
 }
 #endif

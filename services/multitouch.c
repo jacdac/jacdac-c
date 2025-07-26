@@ -216,7 +216,7 @@ static void calibrate(srv_t *state) {
         }
         target_wait_us(100);
     }
-    DMESG("calib: %d", state->pins[0].baseline);
+    JD_DMESG("calib: %d", state->pins[0].baseline);
 }
 
 void multitouch_process(srv_t *state) {

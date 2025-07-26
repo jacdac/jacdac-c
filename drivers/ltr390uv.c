@@ -52,7 +52,7 @@ static void ltr390uv_init(void) {
     ltr390uv_is_present();
 
     int id = i2c_read_reg(LTR390UV_ADDR, LTR390UV_PART_ID);
-    DMESG("LTR390UV part=%x", id);
+    JD_DMESG("LTR390UV part=%x", id);
     if ((id >> 4) != 0xB)
         JD_PANIC();
     i2c_write_reg(LTR390UV_ADDR, LTR390UV_MEAS_RATE, 0x22); // 18bit/100ms

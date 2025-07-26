@@ -6,7 +6,7 @@
 #include "jd_drivers.h"
 #include "services/jd_services.h"
 
-#define LOG(fmt, ...) DMESG("srvcfg: " fmt, ##__VA_ARGS__)
+#define LOG(fmt, ...) JD_DMESG("srvcfg: " fmt, ##__VA_ARGS__)
 #define VLOG JD_NOLOG
 
 #if JD_DCFG
@@ -110,7 +110,7 @@ void jd_srvcfg_run(void) {
         for (i = 0; jd_srvcfg_entries[i].name; ++i) {
             if (memcmp(srv, jd_srvcfg_entries[i].name, namelen) == 0 &&
                 jd_srvcfg_entries[i].name[namelen] == 0) {
-                DMESG("initialize %s @ %d", srv, jd_srvcfg_idx);
+                JD_DMESG("initialize %s @ %d", srv, jd_srvcfg_idx);
                 jd_srvcfg_idx_map[_jd_services_curr_idx()] = jd_srvcfg_idx;
                 jd_srvcfg_entries[i].cfgfn();
                 break;

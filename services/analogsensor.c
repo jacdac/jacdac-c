@@ -100,7 +100,7 @@ void analog_config(void) {
     if (srv)
         srv++;
     if (!srv) {
-        DMESG("! invalid analog: service");
+        JD_DMESG("! invalid analog: service");
         return;
     }
     unsigned service_class = 0;
@@ -110,14 +110,14 @@ void analog_config(void) {
             break;
         }
     if (!service_class) {
-        DMESG("! invalid analog: %s", srv);
+        JD_DMESG("! invalid analog: %s", srv);
         return;
     }
 
     uint8_t pin = jd_srvcfg_pin("pin");
 
     if (!adc_can_read_pin(pin)) {
-        DMESG("! can't ADC %d", pin);
+        JD_DMESG("! can't ADC %d", pin);
         return;
     }
 

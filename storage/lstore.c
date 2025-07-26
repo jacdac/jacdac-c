@@ -17,8 +17,8 @@
 #define SECTOR_SHIFT 9
 #define SECTOR_SIZE (1 << SECTOR_SHIFT)
 
-#define LOG(msg, ...) DMESG("sd: " msg, ##__VA_ARGS__)
-// #define LOGV(msg, ...) DMESG("sd: " msg, ##__VA_ARGS__)
+#define LOG(msg, ...) JD_DMESG("sd: " msg, ##__VA_ARGS__)
+// #define LOGV(msg, ...) JD_DMESG("sd: " msg, ##__VA_ARGS__)
 #define LOGV JD_NOLOG
 #define CHK JD_CHK
 
@@ -508,7 +508,7 @@ void jd_lstore_init(void) {
 
     FRESULT res = f_mount(&ctx->fs, drv, 1);
     if (res != FR_OK) {
-        DMESG("failed to mount card (%d)", res);
+        JD_DMESG("failed to mount card (%d)", res);
         JD_PANIC();
     } else {
         unsigned kb = (ctx->fs.n_fatent >> 1) * ctx->fs.csize;
@@ -596,7 +596,7 @@ void jd_lstore_init(void) {
 
 #if JD_SD_PANIC
 
-#define PANIC_LOG(msg, ...) DMESG("sdpanic: " msg, ##__VA_ARGS__)
+#define PANIC_LOG(msg, ...) JD_DMESG("sdpanic: " msg, ##__VA_ARGS__)
 
 static void flush_to_disk_in_panic(jd_lstore_file_t *f) {
     if (f->needs_flushing)

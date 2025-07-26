@@ -8,7 +8,7 @@
 
 #if defined(PIN_SCS)
 
-// #define DBG DMESG
+// #define DBG JD_DMESG
 #define DBG(...) ((void)0)
 
 #define SRR (1 << 15)

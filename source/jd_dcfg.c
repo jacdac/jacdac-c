@@ -4,7 +4,7 @@
 #include "jd_protocol.h"
 #include "jd_dcfg.h"
 
-#define LOG(fmt, ...) DMESG("dcfg: " fmt, ##__VA_ARGS__)
+#define LOG(fmt, ...) JD_DMESG("dcfg: " fmt, ##__VA_ARGS__)
 #define VLOG JD_NOLOG
 
 STATIC_ASSERT(sizeof(dcfg_entry_t) == DCFG_ENTRY_SIZE);
@@ -37,7 +37,7 @@ static void dcfg_init(void) {
     if (err == 0) {
         mfr_config = hd;
     } else {
-        DMESG("! can't validate mfr config at %p, error %d", hd, err);
+        JD_DMESG("! can't validate mfr config at %p, error %d", hd, err);
         return;
     }
 

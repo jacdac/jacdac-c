@@ -11,7 +11,7 @@ void fatal_error( uint16_t *err ) {
 }
 
 void msg_blocked( uint16_t *req, uint16_t *err ) {
-    DMESG("MSG BLOCKED %d ERR %d", *req, *err);
+    JD_DMESG("MSG BLOCKED %d ERR %d", *req, *err);
 }
 
 void text_to_speech_volume(uint8_t volume) {

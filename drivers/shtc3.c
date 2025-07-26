@@ -64,7 +64,7 @@ static void shtc3_init(void) {
     i2c_init();
     shtc3_is_present();
     wake();
-    DMESG("SHTC3 id=%x", jd_sgp_read_u16(SHTC3_ADDR, SHTC3_ID, 0));
+    JD_DMESG("SHTC3 id=%x", jd_sgp_read_u16(SHTC3_ADDR, SHTC3_ID, 0));
     send_cmd(SHTC3_SLEEP);
 }
 

@@ -197,14 +197,14 @@ static void qma7981_init(void) {
     target_wait_us(250);
 
     int v = readReg(REG_CHIP_ID);
-    DMESG("acc id: %x", v);
+    JD_DMESG("acc id: %x", v);
 
     if (0xe0 <= v && v <= 0xe9) {
         if (v >= 0xe8) {
             // v2
         }
     } else {
-        DMESG("invalid chip");
+        JD_DMESG("invalid chip");
         JD_PANIC();
     }
 

@@ -95,12 +95,12 @@ static void kxtj3_init(void) {
     i2c_init();
 
     int v = readReg(WHO_AM_I);
-    DMESG("KXTJ3 acc id: %x", v);
+    JD_DMESG("KXTJ3 acc id: %x", v);
 
     if (v == 0x35) {
         // OK
     } else {
-        DMESG("invalid chip");
+        JD_DMESG("invalid chip");
         JD_PANIC();
     }
 

@@ -61,7 +61,7 @@ static void sgpc3_init(void) {
     uint8_t data[2];
     if (i2c_read_ex(SGPC3_ADDR, data, sizeof(data)))
         JD_PANIC();
-    DMESG("SGPC3 id=%x %x", data[0], data[1]);
+    JD_DMESG("SGPC3 id=%x %x", data[0], data[1]);
 
     uint8_t arg[2] = {0, 1}; // low-power
     sgpc3_send_cmd_buf(sgpc3_set_power_mode, arg, 2);
@@ -98,7 +98,7 @@ static void sgpc3_process(void) {
             uint8_t data[6];
             if (i2c_read_ex(SGPC3_ADDR, data, sizeof(data)))
                 JD_PANIC();
-            DMESG("rd: %x %x %x %x %x %x", data[0], data[1], data[2], data[3], data[4], data[5]);
+            JD_DMESG("rd: %x %x %x %x %x %x", data[0], data[1], data[2], data[3], data[4], data[5]);
             ctx->state = ST_IDLE;
 
             if (ctx->inited == 1) {
@@ -112,7 +112,7 @@ static void sgpc3_process(void) {
             int tvoc = (data[0] << 8) | data[1];
             int ethanol = (data[3] << 8) | data[4];
 
-            DMESG("TV %d %d", tvoc, ethanol);
+            JD_DMESG("TV %d %d", tvoc, ethanol);
 
             // assume 15% error
             ctx->ethanol.value = ethanol << 10;
@@ -123,7 +123,7 @@ static void sgpc3_process(void) {
             uint8_t data[3];
             if (i2c_read_ex(SGPC3_ADDR, data, sizeof(data)))
                 JD_PANIC();
-            DMESG("rd: %x %x %x", data[0], data[1], data[2]);
+            JD_DMESG("rd: %x %x %x", data[0], data[1], data[2]);
             ctx->state = ST_IDLE;
 
             ctx->nextsample = now + SAMPLING_MS * 1000;

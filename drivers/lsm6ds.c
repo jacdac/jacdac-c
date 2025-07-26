@@ -146,12 +146,12 @@ static void lsm6ds_init(void) {
     r_gyro = sensor_lookup_range(gyro_ranges, 1000 << 20);
 
     int v = readReg(LSM6DS_WHOAMI);
-    DMESG("LSM acc id: %x", v);
+    JD_DMESG("LSM acc id: %x", v);
 
     if (v == ID_LSM6DSOX || v == ID_LSM6DS3TR_C) {
         // OK
     } else {
-        DMESG("invalid chip");
+        JD_DMESG("invalid chip");
         JD_PANIC();
     }
 

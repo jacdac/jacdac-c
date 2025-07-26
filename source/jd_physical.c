@@ -55,7 +55,7 @@ static void tick(void) {
         // this can get delayed when we block interrupts for a long time (eg during flashing)
         // but we don't want it to take forever; give it 130ms
         if (d > 0x20000) {
-            DMESG("TX fail; %u us", (unsigned)d);
+            JD_DMESG("TX fail; %u us", (unsigned)d);
             JD_PANIC();
         }
     }

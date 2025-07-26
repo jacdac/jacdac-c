@@ -38,7 +38,7 @@ static int read_data(void) {
     if (i2c_read_reg_buf(TH02_ADDR, TH02_STATUS, data, 3) < 0)
         return -1;
     if (data[0] & 1) {
-        // DMESG("miss");
+        // JD_DMESG("miss");
         return -1;
     }
     return (data[1] << 8) | data[2];
@@ -56,7 +56,7 @@ static void th02_init(void) {
     ctx->inited = 1;
     i2c_init();
     int id = i2c_read_reg(TH02_ADDR, TH02_ID);
-    DMESG("TH02 id=%x", id);
+    JD_DMESG("TH02 id=%x", id);
     if (id < 0)
         JD_PANIC();
     ctx->temperature.min_value = SCALE_TEMP(-40);
@@ -86,7 +86,7 @@ static void th02_process(void) {
                 env_set_value(&ctx->humidity, ((v << PRECISION) >> 8) - (24 << PRECISION),
                               humidity_error);
                 ctx->nextsample = now + SAMPLING_MS * 1000;
-                // DMESG("t=%dC h=%d%%", ctx->temp >> PRECISION, ctx->humidity >> PRECISION);
+                // JD_DMESG("t=%dC h=%d%%", ctx->temp >> PRECISION, ctx->humidity >> PRECISION);
                 ctx->inited = 2;
             }
         } else {

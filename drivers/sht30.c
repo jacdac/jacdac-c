@@ -61,10 +61,10 @@ static void sht30_init(void) {
 
     ctx->inited = 1;
     i2c_init();
-    // DMESG("SHT30 pres %d", sht30_is_present());
+    // JD_DMESG("SHT30 pres %d", sht30_is_present());
     wake();
     int id = i2c_read_reg16(sht30_addr, SHT30_STATUS);
-    DMESG("SHT30 status=%x", id);
+    JD_DMESG("SHT30 status=%x", id);
     if (id < 0)
         JD_PANIC();
 }

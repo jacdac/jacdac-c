@@ -148,7 +148,7 @@ static void jd_usb_handle_processing_packet(jd_packet_t *pkt) {
         usb_fwd_en = cmd & 1;
         if (usb_fwd_en)
             jd_net_disable_fwd();
-        DMESG("usb: packets %d", usb_fwd_en);
+        JD_DMESG("usb: packets %d", usb_fwd_en);
         jd_usb_respond_to_processing_packet(cmd);
         break;
 
@@ -337,7 +337,7 @@ void jd_usb_panic_start(void) {
 void jd_usb_proto_process(void) {
     if (!usb_is_connected && jd_usb_looks_connected()) {
         usb_is_connected = 1;
-        DMESG("usb: connected");
+        JD_DMESG("usb: connected");
         dmesg_timer = now + (128 << 10);
     }
 

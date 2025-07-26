@@ -5,7 +5,7 @@
 
 #define ASSERT JD_ASSERT
 
-// #define DBG DMESG
+// #define DBG JD_DMESG
 #define DBG(...) ((void)0)
 
 #define DRIVE_LS_ON 0

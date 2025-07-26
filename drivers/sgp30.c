@@ -82,13 +82,13 @@ static void sgp30_init(void) {
 
     ctx->inited = 1;
     i2c_init();
-    // DMESG("SGP30 pres=%x", sgp30_is_present());
+    // JD_DMESG("SGP30 pres=%x", sgp30_is_present());
 
     int id = jd_sgp_read_u16(SGP30_ADDR, sgp30_get_feature_set_version, 2000);
     if (id < 0)
         JD_PANIC();
 
-    DMESG("SGP30 id=%x", id);
+    JD_DMESG("SGP30 id=%x", id);
 
     ctx->nextsample = now + (1 << 20);
     send_cmd(sgp30_tvoc_init_continuous);

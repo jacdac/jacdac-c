@@ -45,39 +45,39 @@ void jd_client_log_event(int event_id, void *arg0, void *arg1) {
         // this is called very often, so don't print anything
         break;
     case JD_CLIENT_EV_DEVICE_CREATED:
-        DMESG("device created: %s", d->short_id);
+        JD_DMESG("device created: %s", d->short_id);
         break;
     case JD_CLIENT_EV_DEVICE_DESTROYED:
-        DMESG("device destroyed: %s", d->short_id);
+        JD_DMESG("device destroyed: %s", d->short_id);
         break;
     case JD_CLIENT_EV_DEVICE_RESET:
-        DMESG("device reset: %s", d->short_id);
+        JD_DMESG("device reset: %s", d->short_id);
         break;
     case JD_CLIENT_EV_REPEATED_EVENT_PACKET:
         if (verbose_log) {
-            DMESG("serv %s/%d[%x] - repeated event cmd=%x", jd_service_parent(serv)->short_id,
+            JD_DMESG("serv %s/%d[%x] - repeated event cmd=%x", jd_service_parent(serv)->short_id,
                   serv->service_index, (unsigned)serv->service_class, pkt->service_command);
         }
         break;
     case JD_CLIENT_EV_SERVICE_PACKET:
         if (verbose_log) {
-            DMESG("serv %s/%d[0x%x] - pkt cmd=%x sz=%d %-s...", jd_service_parent(serv)->short_id,
+            JD_DMESG("serv %s/%d[0x%x] - pkt cmd=%x sz=%d %-s...", jd_service_parent(serv)->short_id,
                   serv->service_index, (unsigned)serv->service_class, pkt->service_command,
                   pkt->service_size, jd_to_hex_a(pkt->data, 4));
         }
         break;
     case JD_CLIENT_EV_NON_SERVICE_PACKET:
         if (verbose_log)
-            DMESG("unbound pkt d=%s/%d cmd=%x sz=%d", d ? d->short_id : "n/a", pkt->service_index,
+            JD_DMESG("unbound pkt d=%s/%d cmd=%x sz=%d", d ? d->short_id : "n/a", pkt->service_index,
                   pkt->service_command, pkt->service_size);
         break;
     case JD_CLIENT_EV_BROADCAST_PACKET:
         // arg0 == NULL here
         if (verbose_log)
-            DMESG("brd cmd=%x", pkt->service_command);
+            JD_DMESG("brd cmd=%x", pkt->service_command);
         break;
     case JD_CLIENT_EV_SERVICE_REGISTER_CHANGED:
-        DMESG("serv %s/%d reg chg %x [sz=%d]", jd_service_parent(serv)->short_id,
+        JD_DMESG("serv %s/%d reg chg %x [sz=%d]", jd_service_parent(serv)->short_id,
               serv->service_index, reg->reg_code, reg->resp_size);
         break;
     }
@@ -346,7 +346,7 @@ void jd_client_handle_packet(jd_packet_t *pkt) {
             if (dev->announce_flags != new_flags) {
                 if ((dev->announce_flags & JD_CONTROL_ANNOUNCE_FLAGS_RESTART_COUNTER_STEADY) >
                     (new_flags & JD_CONTROL_ANNOUNCE_FLAGS_RESTART_COUNTER_STEADY)) {
-                    // DMESG("rst %x -> %x", dev->announce_flags, new_flags);
+                    // JD_DMESG("rst %x -> %x", dev->announce_flags, new_flags);
                     jd_client_emit_event(JD_CLIENT_EV_DEVICE_RESET, dev, pkt);
                     jd_device_unlink(dev);
                     jd_device_free(dev);

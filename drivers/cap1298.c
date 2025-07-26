@@ -45,7 +45,7 @@ void *cap1298_read(void) {
     readData(GEN_STATUS_ADDR, &gen_status, 1);
     readData(SEN_STATUS_ADDR, &sen_status, 1);
     writeReg(MAIN_CONTROL_ADDR, 0b00000000);
-    // DMESG("G: %x S: %x", gen_status, sen_status);
+    // JD_DMESG("G: %x S: %x", gen_status, sen_status);
     for (int i = 0; i < 8; ++i)
         sample[i] = sen_status & (1 << i) ? 0xffff : 0x0000;
     return sample;
@@ -67,12 +67,12 @@ void cap1298_init(void) {
     target_wait_us(1000);
 
     int v = readReg(PROD_ID_ADDR);
-    DMESG("CAP1298 acc id: %x", v);
+    JD_DMESG("CAP1298 acc id: %x", v);
 
     if (v == PROD_ID_VAL) {
         // OK
     } else {
-        DMESG("invalid chip");
+        JD_DMESG("invalid chip");
         JD_PANIC();
     }
 
