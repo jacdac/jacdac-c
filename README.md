@@ -6,6 +6,10 @@ It's meant to be included as submodule, and use the build system of the parent r
 in the following projects:
 * https://github.com/jacdac/jacdac-stm32x0 (which has some better docs on building)
 
+It's currently used in the following projects:
+* https://github.com/jacdac/jacdac-stm32x0 (which has some better docs on building)
+* https://github.com/jacdac/jacdac-esp32 (which is quite experimental)
+
 This library is part of [Jacdac Device Development Kit](https://github.com/jacdac/jacdac-ddk).
 
 ## Adding new services
