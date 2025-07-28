@@ -348,7 +348,7 @@ int jd_net_send_frame(void *frame);
 #endif
 #endif
 */
-#define JD_CFG 0
+#define JD_DCFG 0
 
 #ifndef JD_MAX_SERVICES
 #define JD_MAX_SERVICES 32
