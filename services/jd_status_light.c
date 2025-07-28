@@ -551,9 +551,11 @@ void jd_rgb_set(uint8_t r, uint8_t g, uint8_t b) {
     }
 }
 
+#if JD_DCFG
 bool jd_status_has_color(void) {
     return has_led && !is_mono;
 }
+#endif
 
 #endif
 
