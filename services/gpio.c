@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 #include "jd_services.h"
-#include "interfaces/jd_hw.h"
 #include "interfaces/jd_pwm.h"
 #include "interfaces/jd_pins.h"
 #include "interfaces/jd_hw_pwr.h"
@@ -121,6 +120,7 @@ void gpiosrv_process(srv_t *state) {
             state->values[i / 8] &= ~(1 << (i & 7));
     }
 
+#if JD_MS_TIMER
     // this only triggers when values change and note more often than every EDGE_SAMPLE_MS
     if (!in_future_ms(state->edge_timer) &&
         memcmp(state->values, state->prev_values, state->num_values) != 0) {
@@ -128,6 +128,7 @@ void gpiosrv_process(srv_t *state) {
         state->edge_timer = now_ms + EDGE_SAMPLE_MS;
         jd_send(state->service_index, JD_GET(JD_REG_READING), state->values, state->num_values);
     }
+#endif
 
     // this is regular streaming
     sensor_process_simple(state, state->values, state->num_values);
