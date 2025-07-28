@@ -338,6 +338,8 @@ int jd_net_send_frame(void *frame);
 #define JD_FAST /* */
 #endif
 
+// this is for devicescript integration - remove for now
+/*
 #ifndef JD_DCFG
 #ifdef JD_DCFG_BASE_ADDR
 #define JD_DCFG 1
@@ -345,6 +347,8 @@ int jd_net_send_frame(void *frame);
 #define JD_DCFG 0
 #endif
 #endif
+*/
+#define JD_CFG 0
 
 #ifndef JD_MAX_SERVICES
 #define JD_MAX_SERVICES 32
