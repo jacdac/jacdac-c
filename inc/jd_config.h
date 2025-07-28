@@ -360,7 +360,7 @@ int jd_net_send_frame(void *frame);
 #endif
 
 #ifndef JD_I2C_HELPERS
-#define JD_I2C_HELPERS 0
+#define JD_I2C_HELPERS 1
 #endif
 
 #ifndef JD_SD_PANIC
