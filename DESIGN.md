@@ -22,6 +22,41 @@ Primary entry points:
 - `jd_init()` in `source/jd_protocol.c`
 - `jd_process_everything()` in `source/jd_services.c`
 
+## Main Data Structures
+
+### Wire and transport structures
+
+- `jd_frame_t` (`inc/jd_physical.h`): the on-wire frame envelope used by RX/TX and physical arbitration. It carries frame-level flags, source/target identifier, and packed frame data.
+- `jd_packet_t` (`inc/jd_physical.h`): the logical packet view inside a frame, used by service dispatch, command handling, and report/event processing.
+- `jd_pipe_cmd_t` (`inc/jd_physical.h`): pipe control header used by stream/pipe transport commands.
+- `jd_diagnostics_t` (`inc/jd_physical.h`): runtime bus counters and error telemetry (sent/received/dropped frames and line/UART timeout classes).
+
+### Service runtime structures
+
+- `srv_vt_t` (`inc/jd_service_framework.h`): per-service vtable describing service class, state size, `process` callback, and packet handler callback.
+- `srv_t` / concrete `struct srv_state` (`inc/jd_service_framework.h`, `source/jd_services.c`): opaque per-instance service state. Each service embeds common header fields and service-specific registers/state.
+- `srv_common_t` (`inc/jd_service_framework.h`): common prefix (`vt`, `service_index`, flags) that lets generic runtime code access every service instance uniformly.
+- Runtime service table (`source/jd_services.c`): internal `srv_t **services` + `num_services` array/count holding all registered service instances in service-index order.
+
+### Client/device model structures
+
+- `jd_device_t` (`inc/jd_client.h`): discovered remote device model, including device identifier, announce metadata, expiry, and inline array of services.
+- `jd_device_service_t` (`inc/jd_client.h`): remote service descriptor (class/index/flags/userdata) used by lookup, events, and role binding.
+- `jd_register_query_t` (`inc/jd_client.h`): cached register query state (code, response size, refresh timestamp, inline-or-pointer payload storage).
+- `jd_role_t` (`inc/jd_client.h`): role manager binding node connecting a named role to a currently bound remote service.
+
+### Queue and buffering structures
+
+- `struct jd_queue` (`source/jd_queue.c`): generic ring buffer used by RX/TX queue implementations to store variable-size aligned frames.
+- `ev_t` + `struct event_info` (`source/interfaces/event_queue.c`): deferred event retransmission queue entries and queue state (buffer pointer, write cursor, event counter).
+
+### Practical ownership model
+
+- Physical layer owns transient RX/TX frame handoff (`jd_frame_t`) and invokes runtime callbacks.
+- Runtime/service layer owns service instances (`srv_t`) and dispatch metadata (`srv_vt_t`).
+- Client layer owns discovered topology objects (`jd_device_t`, `jd_device_service_t`) and register cache nodes (`jd_register_query_t`).
+- Queue layer owns frame/event buffering (`struct jd_queue`, `ev_t`) used to smooth timing between ISR/physical activity and main-loop processing.
+
 ## Upper Edge (Application/Service Facing)
 
 ### 1) Application lifecycle hooks
@@ -159,81 +194,3 @@ Areas intentionally postponed for a later deep-dive:
 - Event queue retransmission internals.
 - Advanced features behind compile-time flags (pipes, USB bridge, storage, Wi-Fi, DeviceScript-specific paths).
 - Client role-manager internals outside `source/`.
-
-## Boundary API Map (File + Line)
-
-This section gives a fast symbol-to-location index for the main runtime boundaries.
-
-### Runtime entry and pump
-
-- `jd_init()` -> `source/jd_protocol.c:10`
-- `jd_process_everything()` -> `source/jd_services.c:450`
-- `jd_services_init()` -> `source/jd_services.c:191`
-- `jd_services_tick()` -> `source/jd_services.c:351`
-- `jd_services_process_frame()` -> `source/jd_services.c:152`
-- `jd_services_handle_packet()` -> `source/jd_services.c:292`
-
-### Upper edge: app/service callbacks and send helpers
-
-- `app_init_services()` declaration -> `inc/interfaces/jd_app.h:13`
-- `app_process()` declaration -> `inc/interfaces/jd_app.h:21`
-- `app_get_instance_name()` declaration -> `inc/interfaces/jd_app.h:26`
-- `jd_send()` declaration -> `inc/interfaces/jd_tx.h:18`
-- `jd_send()` implementation -> `source/interfaces/tx_queue.c:100`
-- `jd_respond_u8()` declaration -> `inc/interfaces/jd_tx.h:21`
-- `jd_respond_u8()` implementation -> `source/jd_send_util.c:6`
-- `jd_respond_u16()` declaration -> `inc/interfaces/jd_tx.h:22`
-- `jd_respond_u16()` implementation -> `source/jd_send_util.c:10`
-- `jd_respond_u32()` declaration -> `inc/interfaces/jd_tx.h:23`
-- `jd_respond_u32()` implementation -> `source/jd_send_util.c:14`
-- `jd_respond_empty()` declaration -> `inc/interfaces/jd_tx.h:24`
-- `jd_respond_empty()` implementation -> `source/jd_send_util.c:18`
-- `jd_respond_string()` declaration -> `inc/interfaces/jd_tx.h:25`
-- `jd_respond_string()` implementation -> `source/jd_send_util.c:22`
-- `jd_send_not_implemented()` declaration -> `inc/interfaces/jd_tx.h:26`
-- `jd_send_not_implemented()` implementation -> `source/jd_send_util.c:28`
-- `jd_send_event_ext()` declaration -> `inc/interfaces/jd_tx.h:34`
-- `jd_send_event_ext()` implementation -> `source/interfaces/event_queue.c:89`
-
-### Lower edge: physical callbacks and HAL contracts
-
-- `jd_line_falling()` -> `source/jd_physical.c:150`
-- `jd_rx_completed()` -> `source/jd_physical.c:188`
-- `jd_tx_completed()` -> `source/jd_physical.c:44`
-- `jd_packet_ready()` -> `source/jd_physical.c:245`
-- `hw_device_id()` declaration -> `inc/interfaces/jd_hw.h:14`
-- `hw_panic()` declaration -> `inc/interfaces/jd_hw.h:15`
-- `target_enable_irq()` declaration -> `inc/interfaces/jd_hw.h:37`
-- `target_disable_irq()` declaration -> `inc/interfaces/jd_hw.h:38`
-- `tim_get_micros()` declaration -> `inc/interfaces/jd_hw.h:53`
-- `tim_set_timer()` declaration -> `inc/interfaces/jd_hw.h:54`
-- `uart_start_tx()` declaration -> `inc/interfaces/jd_hw.h:57`
-- `uart_start_rx()` declaration -> `inc/interfaces/jd_hw.h:58`
-- `uart_disable()` declaration -> `inc/interfaces/jd_hw.h:59`
-- `uart_wait_high()` declaration -> `inc/interfaces/jd_hw.h:60`
-- `uart_flush_rx()` declaration -> `inc/interfaces/jd_hw.h:62`
-
-### Lower edge: RX/TX queue seams
-
-- `jd_tx_init()` declaration -> `inc/interfaces/jd_tx.h:12`
-- `jd_tx_init()` implementation -> `source/interfaces/tx_queue.c:90`
-- `jd_tx_flush()` declaration -> `inc/interfaces/jd_tx.h:13`
-- `jd_tx_flush()` implementation -> `source/interfaces/tx_queue.c:187`
-- `jd_tx_get_frame()` declaration -> `inc/interfaces/jd_tx.h:15`
-- `jd_tx_get_frame()` implementation -> `source/interfaces/tx_queue.c:126`
-- `jd_tx_frame_sent()` declaration -> `inc/interfaces/jd_tx.h:16`
-- `jd_tx_frame_sent()` implementation -> `source/interfaces/tx_queue.c:166`
-- `jd_rx_init()` declaration -> `inc/interfaces/jd_rx.h:13`
-- `jd_rx_init()` implementation -> `source/interfaces/simple_rx.c:13`
-- `jd_rx_frame_received()` declaration -> `inc/interfaces/jd_rx.h:14`
-- `jd_rx_frame_received()` implementation -> `source/interfaces/simple_rx.c:52`
-- `jd_rx_get_frame()` declaration -> `inc/interfaces/jd_rx.h:15`
-- `jd_rx_get_frame()` implementation -> `source/interfaces/simple_rx.c:62`
-- `jd_rx_release_frame()` declaration -> `inc/interfaces/jd_rx.h:16`
-- `jd_rx_release_frame()` implementation -> `source/interfaces/simple_rx.c:70`
-
-### Lower edge: allocator contract
-
-- `jd_alloc_init()` declaration -> `inc/interfaces/jd_alloc.h:18`
-- `jd_alloc()` declaration -> `inc/interfaces/jd_alloc.h:28`
-- `jd_free()` declaration -> `inc/interfaces/jd_alloc.h:40`
