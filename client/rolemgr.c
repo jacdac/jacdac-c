@@ -1,9 +1,9 @@
 // Copyright (c) Jacdac Organization.
 // Licensed under the MIT license.
 
-#include "services/jd_services.h"
+#include "../services/jd_services.h"
 #include "client_internal.h"
-#include "jacdac/dist/c/rolemanager.h"
+#include "../jacdac/dist/c/rolemanager.h"
 
 #define LOG JD_LOG
 #define AUTOBIND_MS 980

@@ -1,4 +1,4 @@
-#include "jd_drivers.h"
+#include "../inc/jd_drivers.h"
 
 #ifndef SCD40_ADDR
 #define SCD40_ADDR 0x62

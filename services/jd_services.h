@@ -6,7 +6,7 @@
 
 #include "jd_sensor.h"
 #include "interfaces/jd_sensor_api.h"
-#include "jacdac/dist/c/potentiometer.h"
+#include "../jacdac/dist/c/potentiometer.h"
 
 // For pins where PWM or ADC is used, only certain pins are possible.
 // Best search for an existing call of the *_init() function and use the same pins.

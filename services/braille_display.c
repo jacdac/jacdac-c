@@ -1,6 +1,6 @@
 #include "jd_services.h"
 #include "interfaces/jd_pins.h"
-#include "jacdac/dist/c/brailledisplay.h"
+#include "../jacdac/dist/c/brailledisplay.h"
 
 #define STATE_DIRTY 0x01
 

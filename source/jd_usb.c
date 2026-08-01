@@ -1,6 +1,6 @@
-#include "interfaces/jd_usb.h"
-#include "jacdac/dist/c/usbbridge.h"
-#include "storage/jd_storage.h"
+#include "../inc/interfaces/jd_usb.h"
+#include "../jacdac/dist/c/usbbridge.h"
+#include "../storage/jd_storage.h"
 
 #if JD_USB_BRIDGE
 

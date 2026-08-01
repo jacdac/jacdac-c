@@ -3,7 +3,7 @@
 
 #include "jd_services.h"
 #include "interfaces/jd_pins.h"
-#include "jacdac/dist/c/motion.h"
+#include "../jacdac/dist/c/motion.h"
 
 #define SAMPLING_MS 128 // overkill anyways
 

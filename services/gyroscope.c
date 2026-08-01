@@ -3,7 +3,7 @@
 
 #include "jd_services.h"
 #include "interfaces/jd_sensor_api.h"
-#include "jacdac/dist/c/gyroscope.h"
+#include "../jacdac/dist/c/gyroscope.h"
 
 struct srv_state {
     SENSOR_COMMON;

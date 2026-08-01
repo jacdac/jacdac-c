@@ -1,5 +1,5 @@
-#include "jd_drivers.h"
-#include "services/jd_services.h"
+#include "../inc/jd_drivers.h"
+#include "../services/jd_services.h"
 
 #if defined(SPI_RX) && defined(PIN_CS)
 

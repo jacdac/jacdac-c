@@ -1,13 +1,13 @@
 // Copyright (c) Jacdac Organization.
 // Licensed under the MIT license.
 
-#include "jd_protocol.h"
+#include "../inc/jd_protocol.h"
 
 #if JD_CONFIG_CONTROL_FLOOD == 1
-#include "services/interfaces/jd_hw_pwr.h"
+#include "../services/interfaces/jd_hw_pwr.h"
 #endif
 
-#include "jd_util.h"
+#include "../inc/jd_util.h"
 
 struct srv_state {
     SRV_COMMON;

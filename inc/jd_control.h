@@ -8,10 +8,10 @@
 #include "jd_physical.h"
 #include "jd_service_framework.h"
 
-#include "jacdac/dist/c/_base.h"
-#include "jacdac/dist/c/_system.h"
-#include "jacdac/dist/c/_sensor.h"
-#include "jacdac/dist/c/control.h"
+#include "../jacdac/dist/c/_base.h"
+#include "../jacdac/dist/c/_system.h"
+#include "../jacdac/dist/c/_sensor.h"
+#include "../jacdac/dist/c/control.h"
 
 #define JD_ADVERTISEMENT_0_COUNTER_MASK 0x0000000F
 

@@ -1,4 +1,4 @@
-#include "jd_protocol.h"
+#include "../inc/jd_protocol.h"
 
 struct jd_bqueue {
     uint16_t front;

@@ -5,7 +5,7 @@
 #include "interfaces/jd_pins.h"
 #include "interfaces/jd_pwm.h"
 #include "interfaces/jd_hw_pwr.h"
-#include "jacdac/dist/c/buzzer.h"
+#include "../jacdac/dist/c/buzzer.h"
 
 #ifndef BUZZER_OFF
 #define BUZZER_OFF 0

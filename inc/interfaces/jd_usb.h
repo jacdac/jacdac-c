@@ -4,7 +4,7 @@
 #ifndef JD_USB_H
 #define JD_USB_H
 
-#include "jd_protocol.h"
+#include "../jd_protocol.h"
 
 #if JD_USB_BRIDGE
 

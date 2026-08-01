@@ -1,5 +1,5 @@
-#include "jd_protocol.h"
-#include "jd_numfmt.h"
+#include "../inc/jd_protocol.h"
+#include "../inc/jd_numfmt.h"
 
 #include <limits.h>
 #include <math.h>

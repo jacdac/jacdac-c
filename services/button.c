@@ -3,7 +3,7 @@
 
 #include "jd_services.h"
 #include "interfaces/jd_pins.h"
-#include "jacdac/dist/c/button.h"
+#include "../jacdac/dist/c/button.h"
 
 struct srv_state {
     SENSOR_COMMON;

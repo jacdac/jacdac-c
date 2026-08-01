@@ -5,7 +5,7 @@
 #include "interfaces/jd_pwm.h"
 #include "interfaces/jd_pins.h"
 #include "interfaces/jd_hw_pwr.h"
-#include "jacdac/dist/c/gpio.h"
+#include "../jacdac/dist/c/gpio.h"
 #include "interfaces/jd_adc.h"
 
 #define EDGE_SAMPLE_MS 10

@@ -4,8 +4,8 @@
 #ifndef JD_HID_H
 #define JD_HID_H
 
-#include "jd_config.h"
-#include "jd_physical.h"
+#include "../jd_config.h"
+#include "../jd_physical.h"
 
 #define JD_HID_MAX_KEYCODES 6
 

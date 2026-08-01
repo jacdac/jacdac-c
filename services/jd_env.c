@@ -3,7 +3,7 @@
 
 #include "jd_services.h"
 #include "interfaces/jd_sensor_api.h"
-#include "jacdac/dist/c/eco2.h"
+#include "../jacdac/dist/c/eco2.h"
 
 struct srv_state {
     SENSOR_COMMON;

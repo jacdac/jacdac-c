@@ -5,7 +5,7 @@
 #include "interfaces/jd_pins.h"
 #include "interfaces/jd_pwm.h"
 #include "interfaces/jd_hw_pwr.h"
-#include "jacdac/dist/c/ledsingle.h"
+#include "../jacdac/dist/c/ledsingle.h"
 
 #define RGB_IN_TIM 0x01
 #define FRAME_US 65536

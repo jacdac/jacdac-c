@@ -5,7 +5,7 @@
 #include "interfaces/jd_pins.h"
 #include "interfaces/jd_pwm.h"
 #include "interfaces/jd_hw_pwr.h"
-#include "jacdac/dist/c/control.h"
+#include "../jacdac/dist/c/control.h"
 
 #if JD_CONFIG_STATUS == 1
 

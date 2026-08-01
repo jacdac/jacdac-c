@@ -1,6 +1,6 @@
 #include "jd_services.h"
 #include "interfaces/jd_pins.h"
-#include "jacdac/dist/c/speechsynthesis.h"
+#include "../jacdac/dist/c/speechsynthesis.h"
 
 #define SPEAK_CMD 0x01
 #define CANCEL_CMD 0x02

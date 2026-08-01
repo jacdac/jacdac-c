@@ -4,7 +4,7 @@
 #include "jd_services.h"
 #include "interfaces/jd_pixel.h"
 #include "interfaces/jd_hw_pwr.h"
-#include "jacdac/dist/c/ledstrip.h"
+#include "../jacdac/dist/c/ledstrip.h"
 
 #ifdef STM32X
 #include "tinyhw.h"

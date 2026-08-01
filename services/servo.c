@@ -6,7 +6,7 @@
 #include "interfaces/jd_pins.h"
 #include "interfaces/jd_hw_pwr.h"
 // include the generated header with constants defining registers, commands, etc
-#include "jacdac/dist/c/servo.h"
+#include "../jacdac/dist/c/servo.h"
 
 #define SERVO_PERIOD 20000
 

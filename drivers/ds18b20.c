@@ -1,4 +1,4 @@
-#include "jd_drivers.h"
+#include "../inc/jd_drivers.h"
 
 #define SAMPLING_MS 200   // sampling at SAMPLING_MS+CONVERSION_MS
 #define CONVERSION_MS 800 // for 12 bits; less for less bits

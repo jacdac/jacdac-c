@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 #include "jd_services.h"
-#include "interfaces/jd_lora.h"
+#include "../inc/interfaces/jd_lora.h"
 // #include "jacdac/dist/c/lorawan.h"
 
 #if JD_LORA

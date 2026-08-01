@@ -4,7 +4,7 @@
 #ifndef __JD_ALLOC_H
 #define __JD_ALLOC_H
 
-#include "jd_config.h"
+#include "../jd_config.h"
 
 // This file outlines the APIs for allocator implementations.
 // Allocator implementations are only required if an app or transmission/reception requires dynamic

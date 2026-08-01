@@ -1,4 +1,4 @@
-#include "jd_drivers.h"
+#include "../inc/jd_drivers.h"
 
 #ifndef ACC_I2C_ADDR
 #define ACC_I2C_ADDR 0x6A

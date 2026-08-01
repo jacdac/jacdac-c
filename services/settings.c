@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 #include "jd_services.h"
-#include "jacdac/dist/c/settings.h"
-#include "services/interfaces/jd_flash.h"
+#include "../jacdac/dist/c/settings.h"
+#include "interfaces/jd_flash.h"
 
 struct srv_state {
     SRV_COMMON;

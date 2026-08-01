@@ -5,7 +5,7 @@
 #include "interfaces/jd_pins.h"
 #include "interfaces/jd_pwm.h"
 #include "interfaces/jd_hw_pwr.h"
-#include "jacdac/dist/c/motor.h"
+#include "../jacdac/dist/c/motor.h"
 
 #define PWM_BITS 9
 #define SERVO_PERIOD (1 << PWM_BITS)

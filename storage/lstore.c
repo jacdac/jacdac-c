@@ -4,7 +4,7 @@
 
 #include "ff/ff.h"
 #include "ff/diskio.h"
-#include "services/interfaces/jd_pins.h"
+#include "../services/interfaces/jd_pins.h"
 
 #ifndef JD_LSTORE_FF
 #define JD_LSTORE_FF 1

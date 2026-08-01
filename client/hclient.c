@@ -1,6 +1,6 @@
 #include "client_internal.h"
-#include "jd_hclient.h"
-#include "jd_thr.h"
+#include "../inc/jd_hclient.h"
+#include "../inc/jd_thr.h"
 
 #if JD_THR_ANY
 

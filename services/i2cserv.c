@@ -3,7 +3,7 @@
 
 #include "jd_services.h"
 #include "interfaces/jd_pins.h"
-#include "jacdac/dist/c/i2c.h"
+#include "../jacdac/dist/c/i2c.h"
 
 struct srv_state {
     SRV_COMMON;

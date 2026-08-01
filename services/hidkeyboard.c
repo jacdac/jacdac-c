@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 #include "jd_services.h"
-#include "interfaces/jd_hid.h"
-#include "jacdac/dist/c/hidkeyboard.h"
+#include "../inc/interfaces/jd_hid.h"
+#include "../jacdac/dist/c/hidkeyboard.h"
 
 #if JD_HID
 

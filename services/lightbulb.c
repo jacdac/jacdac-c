@@ -1,6 +1,6 @@
 #include "jd_services.h"
 #include "interfaces/jd_pins.h"
-#include "jacdac/dist/c/lightbulb.h"
+#include "../jacdac/dist/c/lightbulb.h"
 #include "interfaces/jd_pwm.h"
 
 struct srv_state {

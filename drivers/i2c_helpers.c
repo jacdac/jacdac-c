@@ -1,4 +1,4 @@
-#include "jd_drivers.h"
+#include "../inc/jd_drivers.h"
 
 #if JD_I2C_HELPERS
 

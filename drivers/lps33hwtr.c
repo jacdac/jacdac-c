@@ -1,4 +1,4 @@
-#include "jd_drivers.h"
+#include "../inc/jd_drivers.h"
 
 #ifndef LPS33HW_I2C_ADDR
 #define LPS33HW_I2C_ADDR 0x5D // LPS33HW default i2c address

@@ -4,7 +4,7 @@
 #ifndef JD_APP_H
 #define JD_APP_H
 
-#include "jd_config.h"
+#include "../jd_config.h"
 
 /**
  * This function configures firmware for a given module.

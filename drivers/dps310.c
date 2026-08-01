@@ -1,4 +1,4 @@
-#include "jd_drivers.h"
+#include "../inc/jd_drivers.h"
 #include <math.h>
 
 #define SAMPLING_MS 250

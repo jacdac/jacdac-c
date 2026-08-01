@@ -1,6 +1,6 @@
 #include "jd_services.h"
 #include "interfaces/jd_pins.h"
-#include "jacdac/dist/c/dotmatrix.h"
+#include "../jacdac/dist/c/dotmatrix.h"
 #include "interfaces/jd_hw_pwr.h"
 #include "interfaces/jd_disp.h"
 

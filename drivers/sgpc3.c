@@ -1,4 +1,4 @@
-#include "jd_drivers.h"
+#include "../inc/jd_drivers.h"
 
 // doesn't seem to be working - I keep getting 0/0xffff reading from it
 #define SAMPLING_MS 2000

@@ -1,7 +1,7 @@
 #ifndef DRV_NAME_H
 #define DRV_NAME_H
 
-#include "jd_drivers.h"
+#include "../jd_drivers.h"
 
 typedef int pin_name_t;
 typedef int err_t;

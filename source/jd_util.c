@@ -1,7 +1,7 @@
 // Copyright (c) Jacdac Organization.
 // Licensed under the MIT license.
 
-#include "jd_protocol.h"
+#include "../inc/jd_protocol.h"
 
 #define ALIGN(x) (((x) + 3) & ~3)
 

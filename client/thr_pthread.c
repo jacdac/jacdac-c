@@ -1,4 +1,4 @@
-#include "jd_thr.h"
+#include "../inc/jd_thr.h"
 
 #if JD_THR_PTHREAD
 

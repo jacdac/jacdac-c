@@ -1,10 +1,10 @@
 // Copyright (c) Jacdac Organization.
 // Licensed under the MIT license.
 
-#include "jd_protocol.h"
-#include "jd_srvcfg.h"
-#include "jd_drivers.h"
-#include "services/jd_services.h"
+#include "../inc/jd_protocol.h"
+#include "../inc/jd_srvcfg.h"
+#include "../inc/jd_drivers.h"
+#include "../services/jd_services.h"
 
 #define LOG(fmt, ...) JD_DMESG("srvcfg: " fmt, ##__VA_ARGS__)
 #define VLOG JD_NOLOG

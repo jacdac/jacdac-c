@@ -7,7 +7,7 @@
 #include "interfaces/jd_pins.h"
 #include "interfaces/jd_adc.h"
 #include "jd_console.h"
-#include "jacdac/dist/c/multitouch.h"
+#include "../jacdac/dist/c/multitouch.h"
 
 #define PIN_LOG 0
 #ifdef JD_CONSOLE

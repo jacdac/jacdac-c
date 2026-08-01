@@ -1,5 +1,5 @@
-#include "jd_protocol.h"
-#include "jd_pipes.h"
+#include "../inc/jd_protocol.h"
+#include "../inc/jd_pipes.h"
 
 // we don't lock and instead assume we're not running in an interrupt handler
 #define LOCK()                                                                                     \

@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "jd_protocol.h"
+#include "../inc/jd_protocol.h"
 
 typedef void *(*get_reading_t)(void);
 

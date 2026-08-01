@@ -8,7 +8,7 @@
 #ifndef JD_RX_H
 #define JD_RX_H
 
-#include "jd_service_framework.h"
+#include "../jd_service_framework.h"
 
 void jd_rx_init(void);
 int jd_rx_frame_received(jd_frame_t *frame);

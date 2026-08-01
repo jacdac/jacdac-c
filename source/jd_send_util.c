@@ -1,7 +1,7 @@
 // Copyright (c) Jacdac Organization.
 // Licensed under the MIT license.
 
-#include "jd_protocol.h"
+#include "../inc/jd_protocol.h"
 
 int jd_respond_u8(jd_packet_t *pkt, uint8_t v) {
     return jd_send(pkt->service_index, pkt->service_command, &v, sizeof(v));

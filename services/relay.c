@@ -1,6 +1,6 @@
 #include "jd_services.h"
 #include "interfaces/jd_pins.h"
-#include "jacdac/dist/c/relay.h"
+#include "../jacdac/dist/c/relay.h"
 
 struct srv_state {
     SRV_COMMON;

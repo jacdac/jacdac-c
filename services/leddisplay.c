@@ -4,7 +4,7 @@
 #include "jd_services.h"
 #include "interfaces/jd_pixel.h"
 #include "interfaces/jd_hw_pwr.h"
-#include "jacdac/dist/c/led.h"
+#include "../jacdac/dist/c/led.h"
 
 #define DEFAULT_INTENSITY 15
 

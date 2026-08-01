@@ -73,12 +73,12 @@ void analog_init(const srv_vt_t *vt, const analog_config_t *cfg) {
 
 #if JD_DCFG
 
-#include "jacdac/dist/c/lightlevel.h"
-#include "jacdac/dist/c/reflectedlight.h"
-#include "jacdac/dist/c/waterlevel.h"
-#include "jacdac/dist/c/soundlevel.h"
-#include "jacdac/dist/c/soilmoisture.h"
-#include "jacdac/dist/c/potentiometer.h"
+#include "../jacdac/dist/c/lightlevel.h"
+#include "../jacdac/dist/c/reflectedlight.h"
+#include "../jacdac/dist/c/waterlevel.h"
+#include "../jacdac/dist/c/soundlevel.h"
+#include "../jacdac/dist/c/soilmoisture.h"
+#include "../jacdac/dist/c/potentiometer.h"
 
 typedef struct {
     const char *name;

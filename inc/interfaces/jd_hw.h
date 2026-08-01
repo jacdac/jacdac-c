@@ -8,8 +8,8 @@
  * Hardware abstraction layer.
  */
 
-#include "jd_config.h"
-#include "jd_physical.h"
+#include "../jd_config.h"
+#include "../jd_physical.h"
 
 uint64_t hw_device_id(void);
 __attribute((noreturn)) void hw_panic(void);

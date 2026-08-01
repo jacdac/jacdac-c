@@ -1,8 +1,8 @@
 // Copyright (c) Jacdac Organization.
 // Licensed under the MIT license.
 
-#include "jd_protocol.h"
-#include "jd_dcfg.h"
+#include "../inc/jd_protocol.h"
+#include "../inc/jd_dcfg.h"
 
 #define LOG(fmt, ...) JD_DMESG("dcfg: " fmt, ##__VA_ARGS__)
 #define VLOG JD_NOLOG

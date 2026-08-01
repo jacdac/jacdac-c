@@ -1,8 +1,8 @@
 // Copyright (c) Jacdac Organization.
 // Licensed under the MIT license.
 
-#include "jd_protocol.h"
-#include "services/interfaces/jd_flash.h"
+#include "../inc/jd_protocol.h"
+#include "../services/interfaces/jd_flash.h"
 
 #ifdef JD_FSTOR_BASE_ADDR
 

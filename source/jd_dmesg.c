@@ -1,5 +1,5 @@
-#include "jd_protocol.h"
-#include "jd_dmesg.h"
+#include "../inc/jd_protocol.h"
+#include "../inc/jd_dmesg.h"
 
 #if JD_DMESG_BUFFER_SIZE > 0
 

@@ -3,7 +3,7 @@
 
 #include "jd_services.h"
 #include "interfaces/jd_pins.h"
-#include "jacdac/dist/c/switch.h"
+#include "../jacdac/dist/c/switch.h"
 
 struct srv_state {
     SENSOR_COMMON;

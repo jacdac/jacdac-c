@@ -1,5 +1,5 @@
-#include "jd_drivers.h"
-#include "services/jd_services.h"
+#include "../inc/jd_drivers.h"
+#include "../services/jd_services.h"
 
 const accelerometer_api_t *i2c_accelerometers[] = {
     &accelerometer_lsm6ds, // STMicro LSM6DSxx

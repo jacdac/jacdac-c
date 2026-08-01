@@ -1,7 +1,7 @@
 // Copyright (c) Jacdac Organization.
 // Licensed under the MIT license.
 
-#include "jd_protocol.h"
+#include "../../inc/jd_protocol.h"
 
 #define FIRST_DELAY 20  // first repetition send after N ms
 #define SECOND_DELAY 50 // second sent after additional N ms

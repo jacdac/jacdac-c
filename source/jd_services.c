@@ -1,10 +1,10 @@
 // Copyright (c) Jacdac Organization.
 // Licensed under the MIT license.
 
-#include "jd_protocol.h"
-#include "jd_client.h"
-#include "jd_pipes.h"
-#include "interfaces/jd_usb.h"
+#include "../inc/jd_protocol.h"
+#include "../inc/jd_client.h"
+#include "../inc/jd_pipes.h"
+#include "../inc/interfaces/jd_usb.h"
 
 // #define LOG JD_LOG
 #define LOG JD_NOLOG

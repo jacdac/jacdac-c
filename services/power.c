@@ -4,7 +4,7 @@
 #include "jd_services.h"
 #include "interfaces/jd_pins.h"
 #include "interfaces/jd_adc.h"
-#include "jacdac/dist/c/power.h"
+#include "../jacdac/dist/c/power.h"
 
 #define LOG(msg, ...) JD_DMESG("PWR: " msg, ##__VA_ARGS__)
 // #define LOG JD_NOLOG

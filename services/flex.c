@@ -4,7 +4,7 @@
 #include "jd_services.h"
 #include "interfaces/jd_pins.h"
 #include "interfaces/jd_adc.h"
-#include "jacdac/dist/c/flex.h"
+#include "../jacdac/dist/c/flex.h"
 
 struct srv_state {
     SENSOR_COMMON;

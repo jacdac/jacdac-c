@@ -4,7 +4,7 @@
 #include "jd_services.h"
 #include "interfaces/jd_pins.h"
 #include "interfaces/jd_pwm.h"
-#include "jacdac/dist/c/rotaryencoder.h"
+#include "../jacdac/dist/c/rotaryencoder.h"
 
 // after any movement, we probe quickly (1000Hz) for 8s, and then go slow (200Hz)
 // on G0, in slow mode we take around 100uA and 300uA in fast mode

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "jd_protocol.h"
+#include "../inc/jd_protocol.h"
 
 // config
 #ifndef JD_LSTORE_FLUSH_SECONDS

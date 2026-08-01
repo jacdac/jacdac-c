@@ -3,7 +3,7 @@
 
 #include "jd_services.h"
 #include "jd_console.h"
-#include "jacdac/dist/c/logger.h"
+#include "../jacdac/dist/c/logger.h"
 
 struct srv_state {
     SRV_COMMON;
