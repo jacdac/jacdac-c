@@ -88,6 +88,7 @@ void app_client_event_handler(int event_id, void *arg0, void *arg1) {
 }
 
 void jd_client_subscribe(jd_client_event_handler_t handler, void *userdata) {
+    jd_client_enable(); // a sketch can watch the bus without allocating roles
     listener_t *l = jd_alloc(sizeof(*l));
     l->next = jd_client_listeners;
     l->userdata = userdata;

@@ -221,6 +221,15 @@ void jd_services_deinit(void) {
     services = NULL;
 }
 
+#if JD_CLIENT
+// 0 until the app asks to be a client; see the note in jd_services_announce().
+uint8_t jd_client_enabled;
+
+void jd_client_enable(void) {
+    jd_client_enabled = 1;
+}
+#endif
+
 void jd_services_packet_queued(void) {
     packets_sent++;
 }
@@ -241,7 +250,13 @@ void jd_services_announce(void) {
 #endif
 
 #if JD_CLIENT
-    adflags |= JD_CONTROL_ANNOUNCE_FLAGS_IS_CLIENT;
+    // Runtime, not compile time: JD_CLIENT says the architecture has room for a
+    // client, but whether this particular device is one is up to the app. An
+    // Arduino library is compiled identically for every sketch on a board, so
+    // this is the only way a server sketch can avoid announcing itself as a
+    // brain. Set by jd_client_enable(), which jd_role_manager_init() calls.
+    if (jd_client_enabled)
+        adflags |= JD_CONTROL_ANNOUNCE_FLAGS_IS_CLIENT;
 #endif
 
     adflags |= JD_CONTROL_ANNOUNCE_FLAGS_SUPPORTS_ACK |
@@ -277,8 +292,12 @@ bool jd_services_needs_frame(jd_frame_t *frame) {
     if (pkt->flags & JD_FRAME_FLAG_COMMAND) {
         return (pkt->flags & JD_FRAME_FLAG_BROADCAST) || pkt->device_identifier == jd_device_id();
     } else {
-#if JD_CLIENT || JD_PIPES
+#if JD_PIPES
         return 1;
+#elif JD_CLIENT
+        // A client wants every report on the bus; a server only needs to notice
+        // that a brain is present.
+        return jd_client_enabled || is_client_announce(pkt);
 #else
         return is_client_announce(pkt);
 #endif
@@ -298,7 +317,10 @@ void jd_services_handle_packet(jd_packet_t *pkt) {
 #endif
 
 #if JD_CLIENT
-    jd_client_handle_packet(pkt);
+    // Skipped entirely for a server sketch - this is what builds the device
+    // list, and it jd_alloc()s a jd_device_t for every device on the bus.
+    if (jd_client_enabled)
+        jd_client_handle_packet(pkt);
 #endif
 
     if (!(pkt->flags & JD_FRAME_FLAG_COMMAND)) {
@@ -380,7 +402,8 @@ void jd_services_tick(void) {
 #endif
 
 #if JD_CLIENT
-    jd_client_process();
+    if (jd_client_enabled)
+        jd_client_process();
 #endif
 
 #if JD_LSTORE

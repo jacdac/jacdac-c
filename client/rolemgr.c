@@ -248,6 +248,7 @@ void rolemgr_handle_packet(srv_t *state, jd_packet_t *pkt) {
 SRV_DEF(rolemgr, JD_SERVICE_CLASS_ROLE_MANAGER);
 
 void jd_role_manager_init(void) {
+    jd_client_enable(); // asking for roles is what makes a sketch a client
     SRV_ALLOC(rolemgr);
     _state = state;
     state->auto_bind_enabled = 1;

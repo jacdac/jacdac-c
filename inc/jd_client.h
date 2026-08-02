@@ -92,6 +92,14 @@ extern jd_device_t *jd_devices;
 
 void jd_pkt_setup_broadcast(jd_packet_t *dst, uint32_t service_class, uint16_t service_command);
 
+// Whether this device is acting as a client. JD_CLIENT is per architecture -
+// it says the part has room for the client code - but an Arduino library is
+// compiled identically for every sketch on a given board, so which sketches are
+// actually clients has to be a runtime matter. jd_role_manager_init() and
+// jd_client_subscribe() both call jd_client_enable() for you.
+extern uint8_t jd_client_enabled;
+void jd_client_enable(void);
+
 void jd_client_process(void);
 void jd_client_handle_packet(jd_packet_t *pkt);
 
